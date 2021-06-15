@@ -40,4 +40,4 @@ tests = [
 
 for test, expected in tests:
     result = goldbach(test)
-    print(result, result == expected)
+    print(result == expected)
