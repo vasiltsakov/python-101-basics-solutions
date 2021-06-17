@@ -1,37 +1,45 @@
 def gas_stations(distance, tank_size, stations):
+    
+    if tank_size > distance:
+        return []
+
     result = []
 
-    len_stations = len(stations)
+    stations_km = []
 
-    stations_km = stations[:]
-    print(stations)
+    for station in stations:
+        if distance > station:
+            stations_km.append(station)
 
+    # print(stations_km)
 
-    for km in range(1,len_stations):
-        stations_km[km] = stations[km] - stations[km-1]
+    len_stations = len(stations_km)
 
-    print(stations_km)
+    if stations_km:
 
-    tank_size_temp = tank_size
-    index = 0
-    temp_i = 0
-
+        stations_km.append(distance - stations_km[-1])
 
 
-
-    for i, dis in enumerate(stations_km):
-
-        print(f'tank size: {tank_size_temp}, distance: {dis}')
+        for km in range(1,len_stations):
+            stations_km[km] = stations[km] - stations[km-1]
 
 
-        if tank_size_temp > dis:
-            temp_i = i
-            tank_size_temp -= dis
-        else:
-            result.append(stations[temp_i])
-            print(f'result: {result}')
-            tank_size_temp = tank_size
-            tank_size_temp -= dis
+        tank_size_temp = tank_size
+
+
+        for stop in range(len_stations):
+            tank_size_temp -= stations_km[stop]
+
+
+            if tank_size_temp > stations_km[stop + 1]:
+                pass
+            elif tank_size < stations_km[stop + 1]:
+                return []
+            else:
+                result.append(stations[stop])
+                tank_size_temp = tank_size
+    else:
+        return stations_km
 
 
     return result
@@ -41,9 +49,11 @@ def gas_stations(distance, tank_size, stations):
 
 tests = [
     (320, 90, [50, 80, 140, 180, 220, 290], [80, 140, 220, 290]),
-    # (390, 80, [70, 90, 140, 210, 240, 280, 350], [70, 140, 210, 280, 350]),
-    # (100, 50, [10, 20, 30, 40, 50, 60, 70, 80, 90, 150], [40, 80]),
-    # (100, 50, [10, 90], [])
+    (390, 80, [70, 90, 140, 210, 240, 280, 350], [70, 140, 210, 280, 350]),
+    (100, 50, [10, 20, 30, 40, 50, 60, 70, 80, 90, 150], [40, 80]),
+    (100, 101, [200], []),
+    (100, 50, [200], []),
+    (100, 50, [10, 90], [])
     ]
 
 for dis, tank, stations, expected in tests:
