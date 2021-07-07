@@ -87,7 +87,6 @@ def matrix_bombing_plan(m):
         for k, col in enumerate(row):
 
             temp_matrix = bombing((i,k), matrix)
-            print(temp_matrix)
 
             result[(i,k)] = sum_of_matrix(temp_matrix)
 
@@ -112,4 +111,4 @@ expected = {
     }
 
 result = matrix_bombing_plan(matrix)
-print(result, result == expected)
+print(result == expected)

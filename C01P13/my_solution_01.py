@@ -1,4 +1,4 @@
-def prime_number(n):
+def is_prime_number(n):
     
     if n > 1:
         for num in range(2, n):
@@ -6,38 +6,34 @@ def prime_number(n):
                 return False
         return True
 
+def next_prime_number(num):
+    num += 1
+    while not is_prime_number(num):
+        num += 1
 
-# Sorry, I didn't find a solution, so I copied this:
-def next_prime(n):
-    n = n + 1
-
-    while not prime_number(n):
-        n = n + 1
-
-    return n
-
+    return num
 
 def prime_factorization(n):
-
     result = []
-    p = 2
+    prime_num = 2
 
-    if prime_number(n):
+    if is_prime_number(n):
         return [(n, 1)]
-    else:
-        while n != 1:
-            a = 0
-            while n % p == 0:
-                a = a + 1
-                n = n // p
 
-            if a > 0:
-                result.append((p, a))
+    count = 0
 
-            p = next_prime(p)
-        return result
+    while n != 1:
+        while n % prime_num == 0:
+            count += 1
+            n /= prime_num
 
+        if count > 0:
+            result.append((prime_num, count))
 
+        count = 0
+        prime_num = next_prime_number(prime_num)
+
+    return result
 
 tests = [
     (10, [(2, 1), (5, 1)]),
