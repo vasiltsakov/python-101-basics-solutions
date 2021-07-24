@@ -13,13 +13,11 @@ def numbers_to_message(pressed_sequence):
 
     result = []
     count = []
-    upper_letter = []
-
     temp_list = []
-    
+   
     for i,num in enumerate(pressed_sequence):
         
-        if temp_list == []:
+        if not temp_list:
             if num == 0:
                 count.append((0, 1))
             else:
@@ -43,10 +41,10 @@ def numbers_to_message(pressed_sequence):
 
     for i, (key, pressed) in enumerate(count):
         if (key, pressed) == (1, 1):
-            pass
+            continue
         else:
             if pressed > len(keypad[key]):
-                pressed = pressed - (len(keypad[key]) * (pressed // len(keypad[key])))
+                pressed -= (len(keypad[key]) * (pressed // len(keypad[key])))
             if count[i-1] == (1, 1):
                 result.append(keypad[key][pressed-1])
                 result[-1] = result[-1].upper()

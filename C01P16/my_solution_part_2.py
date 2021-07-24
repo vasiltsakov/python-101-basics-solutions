@@ -14,7 +14,6 @@ def message_to_numbers(message):
     result = []
 
     temp_key = None
-    is_upper = False
 
     for i in range(len(message)):
         letter = message[i]
@@ -43,5 +42,5 @@ tests = [
     ]
 
 for test, expected in tests:
-    result = message_to_numbers(test)
-    print(result, result == expected)
+    actual = message_to_numbers(test)
+    print(actual, expected == actual)

@@ -11,8 +11,6 @@ def gas_stations(distance, tank_size, stations):
         if distance > station:
             stations_km.append(station)
 
-    # print(stations_km)
-
     len_stations = len(stations_km)
 
     if stations_km:
@@ -32,7 +30,7 @@ def gas_stations(distance, tank_size, stations):
 
 
             if tank_size_temp > stations_km[stop + 1]:
-                pass
+                continue
             elif tank_size < stations_km[stop + 1]:
                 return []
             else:

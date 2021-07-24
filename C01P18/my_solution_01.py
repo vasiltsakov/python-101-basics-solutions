@@ -11,55 +11,22 @@ def in_range(x, y, matrix):
     return if_range
 
 
-def template(coordinates,matrix):
-    
-    x, y = coordinates
-
-    x1 = x - 1
-    y1 = y - 1
-
-    x2 = x - 1
-    y2 = y
-
-    x3 = x - 1
-    y3 = y + 1
-
-    x4 = x
-    y4 = y - 1
-
-    x5 = x
-    y5 = y + 1
-
-    x6 = x + 1
-    y6 = y - 1
-
-    x7 = x + 1
-    y7 = y
-
-    x8 = x + 1
-    y8 = y + 1
-
-    bombing_coord = [
-        (x1,y1),
-        (x2,y2),
-        (x3,y3),
-        (x4,y4),
-        (x5,y5),
-        (x6,y6),
-        (x7,y7),
-        (x8,y8)
-        ]
-
-    return bombing_coord
-
-
 def bombing(coordinates, matrix):
 
     new_matrix = copy.deepcopy(matrix)
 
-    bombing_coord = template(coordinates, matrix)
-
     x, y = coordinates
+
+    bombing_coord = [
+        (x - 1,y - 1),
+        (x - 1,y),
+        (x - 1,y + 1),
+        (x,y - 1),
+        (x,y + 1),
+        (x + 1,y - 1),
+        (x + 1,y),
+        (x + 1,y + 1)
+        ]
 
     value_point = matrix[x][y]
 
@@ -83,10 +50,10 @@ def sum_of_matrix(matrix):
 def matrix_bombing_plan(m):
     result = {}
 
-    for i, row in enumerate(matrix):
+    for i, row in enumerate(m):
         for k, col in enumerate(row):
 
-            temp_matrix = bombing((i,k), matrix)
+            temp_matrix = bombing((i,k), m)
 
             result[(i,k)] = sum_of_matrix(temp_matrix)
 
@@ -110,5 +77,5 @@ expected = {
     (2, 2): 26
     }
 
-result = matrix_bombing_plan(matrix)
-print(result == expected)
+actual = matrix_bombing_plan(matrix)
+print(expected == actual)

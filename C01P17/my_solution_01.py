@@ -12,12 +12,6 @@ def in_range(x, y, matrix):
 
 def find_word(len_word, coordinates, direction, matrix):
     
-    xd = 0
-    yd = 0
-
-    x = 0
-    y = 0
-
     next_word = []
 
     if direction == 'e':
@@ -56,8 +50,8 @@ def find_word(len_word, coordinates, direction, matrix):
         if if_ra:
             point = matrix[x][y]
             next_word.append(point)
-            x = x + xd
-            y = y + yd
+            x += xd
+            y += yd
         else:
             break
 
@@ -69,15 +63,15 @@ def word_counter(matrix, word):
 
     direction = ['n', 's', 'w' , 'e', 'nw', 'ne', 'sw', 'se']
 
-    for y, row in enumerate(matrix):
-        for x, col in enumerate(row):
+    for x, row in enumerate(matrix):
+        for y, col in enumerate(row):
             for d in direction:
-                next_word = find_word(len(word), (y, x), d, matrix)
+                next_word = find_word(len(word), (x, y), d, matrix)
                 if next_word == word:
                     result += 1
 
     if word == word[::-1]:
-        result = result // 2
+        result //= 2
 
     return result
 

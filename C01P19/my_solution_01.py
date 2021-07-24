@@ -4,9 +4,9 @@ def in_range(x, y, matrix):
     min_y = 0
     max_y = len(matrix[0])
 
-    if_range = x >= min_x and x < max_x and y >= min_y and y < max_y
+    in_range = x >= min_x and x < max_x and y >= min_y and y < max_y
 
-    return if_range
+    return in_range
 
 def friends_configuration_layout(friends_configuration):
 
@@ -93,63 +93,3 @@ cinema_layout = [
 friends_configuration = ["A", "BAA", "FRA", "CAB", "DRC", "EAD", "GLE"]
 
 stranger_forms(cinema_layout, friends_configuration)
-
-
-"""
-The function should return a list of all possible placements, that satisfy the given form. 
-This is basically a list of possible cinema layouts (structure the layouts the same way as the input)
-
-Possible placement is a configuration where:
-
-Our friends can book seats in the way they want.
-They are not going outside of the cinema.
-They are not taking any already reserved seats.
-
-Lets break it down:
-
-A - that's the first letter of the name of someone, who is going to be "central" for the configuration.
-BAA - means - person with name B will be Above the person with name A.
-FRA - means - person with name F will be Right of the person with name A.
-CAB - means - person with name C will be Above the person with name B.
-DRC - means - person with name D will be Right of person with name C.
-EAD - means - person with name E will be Above the person with name D.
-GLE means - person with name G will be Left of the person with name E.
-Few things to consider:
-
-The input will be correct - there won't be 2 people occupying the same place.
-All names are going to be unique.
-There won't be a configuration for someone not being previously introduced.
-
-..*GE.*.**
-...CD**...
-*.*B..*..*
-.**AF..*.*
-...*..*.*.
-.***...*..
-*......*.*
-.....**..*
-..*.*.*..*
-***.*.**..
-
-..*...*.**
-.....**...
-*.*.GE*..*
-.**.CD.*.*
-...*B.*.*.
-.***AF.*..
-*......*.*
-.....**..*
-..*.*.*..*
-***.*.**..
-
-..*...*.**
-.....**...
-*.*...*..*
-.**.GE.*.*
-...*CD*.*.
-.***B..*..
-*...AF.*.*
-.....**..*
-..*.*.*..*
-***.*.**..
-"""
